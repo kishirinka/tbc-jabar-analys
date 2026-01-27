@@ -1,6 +1,8 @@
+-- schema
 CREATE SCHEMA raw;
 CREATE SCHEMA staging;
 CREATE SCHEMA analytics;
+
 
 CREATE TABLE raw.kasus_penyakit_tuberkulosis (
   id INT,
@@ -24,19 +26,6 @@ CREATE TABLE raw.kasus_tuberkulosis (
   satuan TEXT,
   tahun INT
 );
-
-CREATE TABLE raw.pengobatan (
-  id INT,
-  kode_provinsi VARCHAR(10),
-  nama_provinsi TEXT,
-  kode_kabupaten_kota VARCHAR(10),
-  nama_kabupaten_kota TEXT,
-  jenis_kelamin TEXT,
-  jumlah_pengobatan INT,
-  satuan TEXT,
-  tahun INT
-);
-
 
 CREATE TABLE raw.keberhasilan_pengobatan (
   id INT,
@@ -84,13 +73,37 @@ CREATE TABLE raw.terduga (
   tahun INT
 );
 
-CREATE TABLE raw.anak (
+CREATE TABLE raw.tuberkulosis_anak (
   id INT,
   kode_provinsi VARCHAR(10),
   nama_provinsi TEXT,
   kode_kabupaten_kota VARCHAR(10),
   nama_kabupaten_kota TEXT,
   jumlah_anak INT,
+  satuan TEXT,
+  tahun INT
+);
+
+CREATE TABLE raw.pengobatan (
+  id INT,
+  kode_provinsi VARCHAR(10),
+  nama_provinsi TEXT,
+  kode_kabupaten_kota VARCHAR(10),
+  nama_kabupaten_kota TEXT,
+  jenis_kelamin TEXT,
+  jumlah_pengobatan INT,
+  satuan TEXT,
+  tahun INT
+);
+
+CREATE TABLE raw.jenis_penyakit (
+  id INT,
+  kode_provinsi VARCHAR(10),
+  nama_provinsi TEXT,
+  kode_kabupaten_kota VARCHAR(10),
+  nama_kabupaten_kota TEXT,
+  jenis_penyakit TEXT,
+  jumlah_kasus INT,
   satuan TEXT,
   tahun INT
 );

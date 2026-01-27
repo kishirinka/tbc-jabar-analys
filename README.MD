@@ -1,88 +1,88 @@
 # West Java Tuberculosis Data Analysis
 
-This repository contains analysis of tuberculosis (TB) cases data in West Java Province using data from the West Java Open Data Portal.
+This repository contains analysis of tuberculosis (TB) cases data in West Java Province using data from West Java Open Data Portal.
 
 ## Data Source
 
-Data in this repository is sourced from **West Java Province Open Data Portal**:
+Data comes from **West Java Province Open Data Portal**:
 - **Website**: [opendata.jabarprov.go.id](https://opendata.jabarprov.go.id/)
-- **Main Portal**: [data.jabarprov.go.id](https://data.jabarprov.go.id/)
 
-## Data Structure
-
-This repository has the following structure:
+## Repository Structure
 
 ### Data (`/data/`)
-Tuberculosis datasets available in CSV format:
+Tuberculosis dataset files in CSV format:
 
-| File | Description |
-|------|-------------|
-| `jenis_penyakit.csv` | Various disease types data including tuberculosis by regency/city |
-| `kasus_penyakit_tuberkulosis.csv` | Specific tuberculosis disease cases data |
-| `kasus_tuberkulosis.csv` | Tuberculosis cases data by gender and region |
-| `keberhasilan_pengobatan_tuberkulos.csv` | Tuberculosis treatment success rate data |
-| `kematian_pengobatan_tuberkulosis.csv` | Death from tuberculosis during treatment data |
-| `kesembuhan_tuberkulosis_paru_terkonfirmasi.csv` | Recovery data of confirmed pulmonary tuberculosis patients |
-| `terduga_tuberkulosis.csv` | Suspected tuberculosis cases data |
-| `tuberkulosis_anak.csv` | Tuberculosis cases in children data |
-| `tuberkulosis_diobati.csv` | Tuberculosis patients under treatment data |
+- `kasus_tuberkulosis.csv` - TB cases data by gender and region
+- `terduga_tuberkulosis.csv` - Suspected TB cases data
+- `tuberkulosis_diobati.csv` - TB patients under treatment data
+- `keberhasilan_pengobatan_tuberkulos.csv` - TB treatment success rate data
+- `kematian_pengobatan_tuberkulosis.csv` - Death during treatment data
+- `kesembuhan_tuberkulosis_paru_terkonfirmasi.csv` - Pulmonary TB recovery data
+- `tuberkulosis_anak.csv` - TB cases in children data
+- `jenis_penyakit.csv` - Various disease types data including TB
 
-### SQL (`/sql/`)
-- `import_data.sql` - SQL script to create database structure and import data
+### SQL Scripts (`/sql/`)
+- `01_schemas_and_tables.sql` - Create schemas and raw tables
+- `02_staging_tables.sql` - Create staging tables
+- `03_analytics_tables.sql` - Create dimension, fact, and analytics tables
+- `04_etl_tuberkulosis_data_warehouse.sql` - ETL data to data warehouse
+- `06_etl_analytics.sql` - ETL data to analytics tables
+- `06_cek_kualitas_data.sql` - Data quality and consistency checks
+- `07_insight.sql` - Queries for analysis and insights
 
-## Dataset Information
+## Data Architecture
 
-### Data Coverage
-- **Region**: West Java Province (all regencies/cities)
-- **Province Code**: 32
-- **Year**: 2019 (main data)
-- **Categories**: 
-  - By gender (Male/Female)
-  - By administrative region (regency/city)
-  - By age category (children specific)
+### Database Schema
+1. **raw** - Raw data from CSV files
+2. **staging** - Cleaned data and dimension/fact tables
+3. **analytics** - Aggregated data for reporting
 
-### Data Format
-- **Format**: CSV (Comma Separated Values)
-- **Encoding**: UTF-8
-- **Unit**: Person/Cases
-- **General structure**:
-  - `id`: Unique record ID
-  - `kode_provinsi`: Province code (32)
-  - `nama_provinsi`: JAWA BARAT (West Java)
-  - `kode_kabupaten_kota`: Regency/city code
-  - `nama_kabupaten_kota`: Region name
-  - `jenis_kelamin`: LAKI-LAKI/PEREMPUAN (Male/Female)
-  - `jumlah_*`: Number of cases/success/deaths
-  - `satuan`: ORANG/KASUS (Person/Cases)
-  - `tahun`: Data year
+### ETL Pipeline
+1. Load CSV data to raw tables
+2. Transform and load to staging (star schema)
+3. Aggregate data to analytics tables
+4. Quality checks and data validation
 
-## 🛠 Usage
+## How to Use
 
 ### Prerequisites
-- Database system (PostgreSQL/MySQL recommended)
-- Python/R for data analysis
-- Visualization tools (Matplotlib, Seaborn, Tableau, etc.)
+- PostgreSQL database
+- SQL execution tool (pgAdmin, DBeaver, etc.)
 
-### Import Data to Database
-```sql
--- Run SQL script to create database structure
-psql -d database_name -f sql/import_data.sql
-
--- Import CSV data to created tables
-COPY raw.kasus_tuberkulosis FROM 'data/kasus_tuberkulosis.csv' DELIMITER ',' CSV HEADER;
--- Repeat for other datasets...
+### Steps
+1. Run SQL scripts in order:
+```bash
+01_schemas_and_tables.sql    # Create schemas and tables
+02_staging_tables.sql        # Create staging tables
+03_analytics_tables.sql      # Create dimension and analytics tables
+04_etl_tuberkulosis_data_warehouse.sql  # ETL to data warehouse
+05_etl_analytics.sql         # ETL to analytics
 ```
 
+2. Import CSV data to corresponding raw tables
+
+3. Run analysis scripts:
+```bash
+06_cek_kualitas_data.sql     # Check data quality
+07_insight.sql               # Generate insights
+```
+
+## Types of Analysis
+
+- **Regional Analysis**: TB cases per regency/city
+- **Gender Analysis**: Case distribution by gender
+- **Treatment Analysis**: Success and mortality rates
+- **Outlier Detection**: Identify regions with extreme cases
+- **Temporal Trends**: TB case patterns over time
+
 ## Data Contact
-For further inquiries about the data:
 - **Email**: data@jabarprov.go.id  
-- **WhatsApp**: +62 821-2603-0038
 - **Website**: [opendata.jabarprov.go.id](https://opendata.jabarprov.go.id/)
 
 ## License
-This data follows the terms of use from West Java Province Open Data Portal. Please refer to [Terms of Use](https://opendata.jabarprov.go.id/id/ketentuan-penggunaan) and [Privacy Policy](https://opendata.jabarprov.go.id/id/kebijakan-privasi) for more information.
+Data follows the terms of use from West Java Province Open Data Portal.
 
 ---
 
 **Last Updated**: January 2026  
-**Data Source**: West Java Province Open Data
+**Data Source**: West Java Province Open Data Portal
