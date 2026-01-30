@@ -1,6 +1,16 @@
 # West Java Tuberculosis Data Analysis
+![Dashboard Overview](image.png)
+This repository contains analysis of tuberculosis (TB) cases data in West Java Province using data from West Java Open Data Portal. The analysis includes an interactive dashboard built with Tableau Public.
 
-This repository contains analysis of tuberculosis (TB) cases data in West Java Province using data from West Java Open Data Portal.
+## Interactive Dashboard
+
+**Live Dashboard**: [ristek.link/visualisasi_tbc_jabar](https://ristek.link/visualisasi_tbc_jabar)
+
+The dashboard provides interactive visualizations with multiple tabs covering:
+- **Overview**: Executive summary with key KPIs and trends
+- **Regional Analysis**: TB cases distribution across West Java regions  
+- **Demographics**: Analysis by gender and treatment outcomes
+- **Risk Areas**: High-burden regions identification
 
 ## Data Source
 
@@ -20,6 +30,10 @@ Tuberculosis dataset files in CSV format:
 - `kesembuhan_tuberkulosis_paru_terkonfirmasi.csv` - Pulmonary TB recovery data
 - `tuberkulosis_anak.csv` - TB cases in children data
 - `jenis_penyakit.csv` - Various disease types data including TB
+
+### Dashboard (`/dashboard/`)
+- `TB_Analysis_West_Java.twb` - Tableau workbook file
+- Interactive dashboard with multiple analysis tabs
 
 ### SQL Scripts (`/sql/`)
 - `01_schemas_and_tables.sql` - Create schemas and raw tables
