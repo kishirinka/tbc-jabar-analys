@@ -1,16 +1,29 @@
 # West Java Tuberculosis Data Analysis
-![Dashboard Overview](image.png)
+![Dashboard Overview](dashboard_picts/01_overview.png)
 This repository contains analysis of tuberculosis (TB) cases data in West Java Province using data from West Java Open Data Portal. The analysis includes an interactive dashboard built with Tableau Public.
 
 ## Interactive Dashboard
 
-**Live Dashboard**: [ristek.link/visualisasi_tbc_jabar](https://ristek.link/visualisasi_tbc_jabar)
+**Live Dashboard**: [Link Tableau Dashboard](https://ristek.link/visualisasi_tbc_jabar)
 
-The dashboard provides interactive visualizations with multiple tabs covering:
-- **Overview**: Executive summary with key KPIs and trends
-- **Regional Analysis**: TB cases distribution across West Java regions  
+The dashboard provides comprehensive interactive analysis with 4 analytical tabs:
+- **Overview**: Executive summary with key KPIs, temporal trends, and burden hotspots identification
+- **Regional Performance**: Treatment pipeline efficiency, intervention prioritization matrix, urban vs rural analysis, and multi-year growth trends
 - **Demographics**: Analysis by gender and treatment outcomes
-- **Risk Areas**: High-burden regions identification
+- **Risk Areas**: High-burden regions identification and resource allocation strategy
+
+## Key Dashboard Features
+
+### Strategic Analysis
+- **Treatment Pipeline Bottleneck Identification**: Analysis showing diagnostic rate vs recovery completion gaps
+- **Resource Prioritization Matrix**: Scatter plot analysis of total cases vs treatment success rates to identify intervention priorities  
+- **Urban vs Rural Comparison**: Burden distribution analysis challenging assumptions about TB concentration
+- **Multi-year Growth Tracking**: Trend analysis identifying emerging hotspots (Bogor surpassing traditional centers)
+
+### Interactive Elements
+- **Year and Location Filters**: Dynamic filtering across all visualizations
+- **Cross-tab Navigation**: Seamless analysis flow from overview to detailed insights
+- **Actionable Insights**: Data-driven recommendations for public health decision making
 
 ## Data Source
 
