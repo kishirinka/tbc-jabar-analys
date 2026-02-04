@@ -38,7 +38,6 @@ VALUES
 ON CONFLICT (jenis_kelamin, kategori_usia) DO NOTHING;
 
 -- Isi fact table
--- Push selection down, minimize data movement, optimal join order
 WITH base_cases AS (
   SELECT 
     kode_kabupaten_kota,
@@ -126,4 +125,23 @@ LEFT JOIN filtered_berhasil kb
   AND ewd.jenis_kelamin = kb.jenis_kelamin
 LEFT JOIN filtered_meninggal km 
   ON ewd.kode_kabupaten_kota = km.kode_kabupaten_kota 
-  AND ewd.tahun = km.tahun;
+  AND ewd.tahun = km.tahun
+
+UNION ALL
+-- Add Children Data
+SELECT 
+  dw.wilayah_id,
+  dt.waktu_id,
+  dd.demografi_id,
+  ta.jumlah_anak as jumlah_kasus,
+  0 as jumlah_terduga, 
+  0 as jumlah_diobati,
+  0 as jumlah_sembuh,
+  0 as jumlah_berhasil_diobati,
+  0 as jumlah_meninggal
+FROM raw.tuberkulosis_anak ta
+INNER JOIN staging.dim_wilayah dw ON ta.kode_kabupaten_kota = dw.kode_kabupaten_kota
+INNER JOIN staging.dim_waktu dt ON ta.tahun = dt.tahun  
+INNER JOIN staging.dim_demografi dd ON dd.kategori_usia = 'ANAK'
+WHERE ta.jumlah_anak > 0 
+  AND ta.tahun BETWEEN 2010 AND 2025;

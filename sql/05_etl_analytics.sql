@@ -1,5 +1,4 @@
 -- ETL Analytics
-
 -- Ringkasan TB perwilayah dan tahun
 WITH fact_filtered AS (
   SELECT 
@@ -186,3 +185,33 @@ SELECT
 FROM burden_categories
 WHERE burden_category IN ('HIGH', 'VERY HIGH')  
 ORDER BY priority_level, total_kasus DESC;
+
+-- ETL Age Analysis (DEWASA vs ANAK)
+WITH age_totals AS (
+  SELECT 
+    dd.kategori_usia,
+    dt.tahun,
+    SUM(ft.jumlah_kasus) as total_kasus
+  FROM staging.fact_tuberkulosis ft
+  INNER JOIN staging.dim_waktu dt ON ft.waktu_id = dt.waktu_id
+  INNER JOIN staging.dim_demografi dd ON ft.demografi_id = dd.demografi_id
+  WHERE ft.jumlah_kasus > 0
+  GROUP BY dd.kategori_usia, dt.tahun
+),
+yearly_age_total AS (
+  SELECT 
+    tahun,
+    SUM(total_kasus) as yearly_total_cases
+  FROM age_totals
+  GROUP BY tahun
+)
+INSERT INTO analytics.tb_by_age
+SELECT 
+  ROW_NUMBER() OVER() as age_id,
+  at.kategori_usia,
+  at.tahun,
+  at.total_kasus,
+  ROUND((at.total_kasus::DECIMAL / yt.yearly_total_cases) * 100, 2) as persentase_kasus,
+  CURRENT_TIMESTAMP as created_at
+FROM age_totals at
+INNER JOIN yearly_age_total yt ON at.tahun = yt.tahun;

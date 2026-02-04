@@ -59,3 +59,12 @@ CREATE TABLE analytics.tb_high_burden_areas (
   priority_level INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE analytics.tb_by_age (
+  age_id SERIAL PRIMARY KEY,
+  kategori_usia VARCHAR(20),
+  tahun INT,
+  total_kasus INT DEFAULT 0,
+  persentase_kasus DECIMAL(5,2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

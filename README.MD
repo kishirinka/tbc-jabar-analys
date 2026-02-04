@@ -9,7 +9,7 @@ This repository contains analysis of tuberculosis (TB) cases data in West Java P
 The dashboard provides comprehensive interactive analysis with 4 analytical tabs:
 - **Overview**: Executive summary with key KPIs, temporal trends, and burden hotspots identification
 - **Regional Performance**: Treatment pipeline efficiency, intervention prioritization matrix, urban vs rural analysis, and multi-year growth trends
-- **Demographics**: Analysis by gender and treatment outcomes
+- **Demographics**: Analysis by gender and age.
 - **Risk Areas**: High-burden regions identification and resource allocation strategy
 
 ## Key Dashboard Features
@@ -45,7 +45,8 @@ Tuberculosis dataset files in CSV format:
 - `jenis_penyakit.csv` - Various disease types data including TB
 
 ### Dashboard (`/dashboard/`)
-- `TB_Analysis_West_Java.twb` - Tableau workbook file
+- `dashboard-tbc-jabar.twbx` - Tableau workbook file (packaged)
+- `dashboard-tbc-jabar.xlsx` - Excel analysis file with pivot tables and charts
 - Interactive dashboard with multiple analysis tabs
 
 ### SQL Scripts (`/sql/`)
@@ -73,7 +74,9 @@ Tuberculosis dataset files in CSV format:
 ## How to Use
 
 ### Prerequisites
-- PostgreSQL database
+- Database system (PostgreSQL/MySQL recommended)
+- Python/R for data analysis
+- Visualization tools (Tableau, Microsoft Excel, Power BI, etc.)
 - SQL execution tool (pgAdmin, DBeaver, etc.)
 
 ### Steps

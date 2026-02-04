@@ -10,6 +10,7 @@ media
 Book2.twb
 # Backup files
 *.bak
+*.twbr
 
 # If you are using PyCharm
 # User-specific stuff
