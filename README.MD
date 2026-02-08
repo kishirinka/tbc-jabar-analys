@@ -4,7 +4,7 @@ This repository contains analysis of tuberculosis (TB) cases data in West Java P
 
 ## Interactive Dashboard
 
-**Live Dashboard**: [Link Tableau Dashboard](https://ristek.link/visualisasi_tbc_jabar)
+**Live Dashboard**: [Link Tableau Dashboard](https://public.tableau.com/app/profile/irma.alwijah/viz/tbc-dashboard-jabar/Overview)
 
 The dashboard provides comprehensive interactive analysis with 4 analytical tabs:
 - **Overview**: Executive summary with key KPIs, temporal trends, and burden hotspots identification
