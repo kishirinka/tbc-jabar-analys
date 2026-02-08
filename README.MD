@@ -8,9 +8,9 @@ This repository contains analysis of tuberculosis (TB) cases data in West Java P
 
 The dashboard provides comprehensive interactive analysis with 4 analytical tabs:
 - **Overview**: Executive summary with key KPIs, temporal trends, and burden hotspots identification
-- **Regional Performance**: Treatment pipeline efficiency, intervention prioritization matrix, urban vs rural analysis, and multi-year growth trends
-- **Demographics**: Analysis by gender and age.
-- **Risk Areas**: High-burden regions identification and resource allocation strategy
+- **Regional**: Regional performance analysis, treatment pipeline efficiency, and geographical distribution
+- **Demographics**: Child vs adult ratio analysis (29.79% children), gender risk assessment (55% male burden), and treatment adherence gaps
+- **Risk**: System performance alerts identifying 4 regions in danger, lowest recovery rates (4.49%), and highest mortality rates (7.7%)
 
 ## Key Dashboard Features
 
@@ -44,19 +44,19 @@ Tuberculosis dataset files in CSV format:
 - `tuberkulosis_anak.csv` - TB cases in children data
 - `jenis_penyakit.csv` - Various disease types data including TB
 
-### Dashboard (`/dashboard/`)
+### Dashboard Files
 - `dashboard-tbc-jabar.twbx` - Tableau workbook file (packaged)
-- `dashboard-tbc-jabar.xlsx` - Excel analysis file with pivot tables and charts
-- Interactive dashboard with multiple analysis tabs
+- Excel analysis files with pivot tables and charts
+- `dashboard_picts/` - Dashboard screenshots and visualizations
 
 ### SQL Scripts (`/sql/`)
-- `01_schemas_and_tables.sql` - Create schemas and raw tables
-- `02_staging_tables.sql` - Create staging tables
-- `03_analytics_tables.sql` - Create dimension, fact, and analytics tables
-- `04_etl_tuberkulosis_data_warehouse.sql` - ETL data to data warehouse
-- `06_etl_analytics.sql` - ETL data to analytics tables
-- `06_cek_kualitas_data.sql` - Data quality and consistency checks
-- `07_insight.sql` - Queries for analysis and insights
+- `01_schemas_and_tables.sql` - Database schemas and raw tables setup
+- `02_staging_tables.sql` - Staging tables creation (star schema)
+- `03_analytics_tables.sql` - Analytics and summary tables
+- `04_etl_tuberkulosis_data_warehouse.sql` - ETL Raw to Data Warehouse
+- `05_etl_analytics.sql` - ETL Staging to Analytics layer
+- `06_cek_kualitas_data.sql` - Data validation and quality checks  
+- `07_insight.sql` - Business intelligence and analytical queries
 
 ## Data Architecture
 
@@ -82,28 +82,29 @@ Tuberculosis dataset files in CSV format:
 ### Steps
 1. Run SQL scripts in order:
 ```bash
-01_schemas_and_tables.sql    # Create schemas and tables
-02_staging_tables.sql        # Create staging tables
-03_analytics_tables.sql      # Create dimension and analytics tables
+01_schemas_and_tables.sql           # Create schemas and raw tables
+02_staging_tables.sql               # Create staging tables  
+03_analytics_tables.sql             # Create analytics tables
 04_etl_tuberkulosis_data_warehouse.sql  # ETL to data warehouse
-05_etl_analytics.sql         # ETL to analytics
+05_etl_analytics.sql                # ETL to analytics layer
 ```
 
 2. Import CSV data to corresponding raw tables
 
-3. Run analysis scripts:
+3. Run analysis and quality check scripts:
 ```bash
-06_cek_kualitas_data.sql     # Check data quality
-07_insight.sql               # Generate insights
+06_cek_kualitas_data.sql           # Check data quality
+07_insight.sql                     # Generate business insights
 ```
 
-## Types of Analysis
+## Key Analytical Features
 
-- **Regional Analysis**: TB cases per regency/city
-- **Gender Analysis**: Case distribution by gender
-- **Treatment Analysis**: Success and mortality rates
-- **Outlier Detection**: Identify regions with extreme cases
-- **Temporal Trends**: TB case patterns over time
+- **Demographics Intelligence**: 29.79% child cases with persistent 25k+ annual volume
+- **Gender Risk Assessment**: Male patients account for 55% of cases, females show 88% recovery rate
+- **Regional Risk Stratification**: 4 regions identified in critical danger zone
+- **Performance Monitoring**: System alerts for mortality >5% and recovery <50%
+- **Treatment Cascade Analysis**: Detection, treatment initiation, and success rate tracking
+- **Advanced SQL Optimization**: Query optimization with selection push-down and CTE patterns
 
 ## Data Contact
 - **Email**: data@jabarprov.go.id  
@@ -114,5 +115,5 @@ Data follows the terms of use from West Java Province Open Data Portal.
 
 ---
 
-**Last Updated**: January 2026  
+**Last Updated**: February 2026  
 **Data Source**: West Java Province Open Data Portal
